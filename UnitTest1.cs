@@ -29,7 +29,7 @@ namespace TestProjectLab1
             string triangleType = GetTriangleType(sideA, sideB, sideC);
 
             // Assert
-            Assert.AreEqual("равносторонний", triangleType);
+            Assert.AreEqual("СЂР°РІРЅРѕСЃС‚РѕСЂРѕРЅРЅРёР№", triangleType);
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace TestProjectLab1
             string triangleType = GetTriangleType(sideA, sideB, sideC);
 
             // Assert
-            Assert.AreEqual("равнобедренный", triangleType);
+            Assert.AreEqual("СЂР°РІРЅРѕР±РµРґСЂРµРЅРЅС‹Р№", triangleType);
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace TestProjectLab1
             string triangleType = GetTriangleType(sideA, sideB, sideC);
 
             // Assert
-            Assert.AreEqual("разносторонний", triangleType);
+            Assert.AreEqual("СЂР°Р·РЅРѕСЃС‚РѕСЂРѕРЅРЅРёР№", triangleType);
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace TestProjectLab1
             string triangleType = GetTriangleType(sideA, sideB, sideC);
 
             // Assert
-            Assert.AreEqual("не треугольник", triangleType);
+            Assert.AreEqual("РЅРµ С‚СЂРµСѓРіРѕР»СЊРЅРёРє", triangleType);
         }
 
         [Test]
@@ -144,29 +144,29 @@ namespace TestProjectLab1
             Assert.AreEqual("", coordinatesString);
         }
 
-        // Добавьте другие тесты для проверки логирования успешных и неуспешных запросов
+   
 
         private string GetTriangleType(float sideA, float sideB, float sideC)
         {
-            // Реализация метода определения типа треугольника
+          
             if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA)
             {
                 if (sideA == sideB && sideB == sideC)
                 {
-                    return "равносторонний";
+                    return "СЂР°РІРЅРѕСЃС‚РѕСЂРѕРЅРЅРёР№";
                 }
                 else if (sideA == sideB || sideA == sideC || sideB == sideC)
                 {
-                    return "равнобедренный";
+                    return "СЂР°РІРЅРѕР±РµРґСЂРµРЅРЅС‹Р№";
                 }
                 else
                 {
-                    return "разносторонний";
+                    return "СЂР°Р·РЅРѕСЃС‚РѕСЂРѕРЅРЅРёР№";
                 }
             }
             else
             {
-                return "не треугольник";
+                return "РЅРµ С‚СЂРµСѓРіРѕР»СЊРЅРёРє";
             }
         }
 
@@ -175,13 +175,13 @@ namespace TestProjectLab1
 
         private List<Tuple<int, int>> GetVertexCoordinates(float sideA, float sideB, float sideC)
         {
-            // Реализация метода вычисления координат вершин треугольника
+  
             const int fieldSize = 100;
-            const int scalingFactor = fieldSize / 10; // Масштабирование координат для отображения в поле 100x100 px
+            const int scalingFactor = fieldSize / 10;
 
             if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA)
             {
-                // Вычисление координат вершин треугольника в пространстве 10x10
+    
                 int xA = 0;
                 int yA = 0;
                 int xB = (int)(sideC * scalingFactor);
@@ -199,7 +199,7 @@ namespace TestProjectLab1
             }
             else
             {
-                // Для некорректных входных данных возвращаем (-1, -1) в качестве координат всех вершин
+              
                 return new List<Tuple<int, int>>()
             {
                 new Tuple<int, int>(-1, -1),
@@ -211,7 +211,7 @@ namespace TestProjectLab1
 
         private string GetVertexCoordinatesString(List<Tuple<int, int>> vertexCoordinates)
         {
-            // Реализация метода форматирования строкового представления координат вершин треугольника
+
             string coordinatesString = "";
             foreach (var vertex in vertexCoordinates)
             {
