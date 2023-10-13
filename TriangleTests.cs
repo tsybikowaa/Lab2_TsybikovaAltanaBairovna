@@ -80,9 +80,7 @@ namespace TestProjectLab1
             AssertLogMessage(expectedLogMessage, Action);
         }
 
-        // Add more tests for other logging scenarios
-
-      
+  
 
         [Test]
         public void Log_InvalidInput_Unsuccessful()
