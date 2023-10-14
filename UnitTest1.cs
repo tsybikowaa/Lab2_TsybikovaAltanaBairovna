@@ -16,209 +16,138 @@ namespace TestProjectLab1
 
     {
 
+  [Test]
+  public void GetTriangleType_EquilateralTriangle_ReturnsEquilateral()
+  {
+      // Arrange
+      float sideA = 5;
+      float sideB = 5;
+      float sideC = 5;
 
-        [Test]
-        public void GetTriangleType_EquilateralTriangle_ReturnsEquilateral()
-        {
-            // Arrange
-            float sideA = 5;
-            float sideB = 5;
-            float sideC = 5;
+      // Act
+      string triangleType =Program.GetTriangleType(sideA, sideB, sideC);
 
-            // Act
-            string triangleType = GetTriangleType(sideA, sideB, sideC);
+      // Assert
+      Assert.AreEqual("равносторонний", triangleType);
+  }
 
-            // Assert
-            Assert.AreEqual("равносторонний", triangleType);
-        }
+  [TestCase(5, 5, 8)]
+  [TestCase(8, 5, 5)]
+  [TestCase(5, 8, 5)]
+  public void GetTriangleType_IsoscelesTriangle_ReturnsIsosceles(float a, float b, float c)
+  {
+      // Arrange
 
-        [Test]
-        public void GetTriangleType_IsoscelesTriangle_ReturnsIsosceles()
-        {
-            // Arrange
-            float sideA = 5;
-            float sideB = 5;
-            float sideC = 8;
+      // Act
+      string triangleType = Program.GetTriangleType(a, b, c);
 
-            // Act
-            string triangleType = GetTriangleType(sideA, sideB, sideC);
+      // Assert
+      Assert.AreEqual("равнобедренный", triangleType);
+  }
 
-            // Assert
-            Assert.AreEqual("равнобедренный", triangleType);
-        }
 
-        [Test]
-        public void GetTriangleType_ScaleneTriangle_ReturnsScalene()
-        {
-            // Arrange
-            float sideA = 3;
-            float sideB = 4;
-            float sideC = 5;
-
-            // Act
-            string triangleType = GetTriangleType(sideA, sideB, sideC);
-
-            // Assert
-            Assert.AreEqual("разносторонний", triangleType);
-        }
-
-        [Test]
-        public void GetTriangleType_NotATriangle_ReturnsNotTriangle()
-        {
-            // Arrange
-            float sideA = 1;
-            float sideB = 2;
-            float sideC = 3;
-
-            // Act
-            string triangleType = GetTriangleType(sideA, sideB, sideC);
-
-            // Assert
-            Assert.AreEqual("не треугольник", triangleType);
-        }
-
-        [Test]
-        public void GetVertexCoordinates_ValidSides_ReturnsCoordinates()
-        {
-            // Arrange
-            float sideA = 3;
-            float sideB = 4;
-            float sideC = 5;
-
-            // Act
-            List<Tuple<int, int>> vertexCoordinates = GetVertexCoordinates(sideA, sideB, sideC);
-
-            // Assert
-            Assert.AreEqual(3, vertexCoordinates.Count);
-            Assert.AreEqual(new Tuple<int, int>(0, 0), vertexCoordinates[0]);
-            Assert.AreEqual(new Tuple<int, int>(50, 0), vertexCoordinates[1]);
-            Assert.AreEqual(new Tuple<int, int>(32, -2147483648), vertexCoordinates[2]);
-        }
-
-        [Test]
-        public void GetVertexCoordinates_NotATriangle_ReturnsInvalidCoordinates()
-        {
-            // Arrange
-            float sideA = 1;
-            float sideB = 2;
-            float sideC = 3;
-
-            // Act
-            List<Tuple<int, int>> vertexCoordinates = GetVertexCoordinates(sideA, sideB, sideC);
-
-            // Assert
-            Assert.AreEqual(3, vertexCoordinates.Count);
-            Assert.AreEqual(new Tuple<int, int>(-1, -1), vertexCoordinates[0]);
-            Assert.AreEqual(new Tuple<int, int>(-1, -1), vertexCoordinates[1]);
-            Assert.AreEqual(new Tuple<int, int>(-1, -1), vertexCoordinates[2]);
-        }
-
-        [Test]
-        public void GetVertexCoordinatesString_ValidCoordinates_ReturnsFormattedString()
-        {
-            // Arrange
-            List<Tuple<int, int>> vertexCoordinates = new List<Tuple<int, int>>()
-        {
-            new Tuple<int, int>(0, 0),
-            new Tuple<int, int>(60, 0),
-            new Tuple<int, int>(36, 48)
-        };
-
-            // Act
-            string coordinatesString = GetVertexCoordinatesString(vertexCoordinates);
-
-            // Assert
-            Assert.AreEqual("(0, 0), (60, 0), (36, 48)", coordinatesString);
-        }
-
-        [Test]
-        public void GetVertexCoordinatesString_EmptyCoordinates_ReturnsEmptyString()
-        {
-            // Arrange
-            List<Tuple<int, int>> vertexCoordinates = new List<Tuple<int, int>>();
-
-            // Act
-            string coordinatesString = GetVertexCoordinatesString(vertexCoordinates);
-
-            // Assert
-            Assert.AreEqual("", coordinatesString);
-        }
-
+  [TestCase(3, 4, 5)]
+  [TestCase(4, 5, 3)]
+  [TestCase(5, 4, 3)]
+  [TestCase(4, 3, 5)]
+  
+  public void GetTriangleType_ScaleneTriangle_ReturnsScalene(float a, float b, float c)
+  {
+      // Arrange
    
 
-        private string GetTriangleType(float sideA, float sideB, float sideC)
-        {
-          
-            if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA)
-            {
-                if (sideA == sideB && sideB == sideC)
-                {
-                    return "равносторонний";
-                }
-                else if (sideA == sideB || sideA == sideC || sideB == sideC)
-                {
-                    return "равнобедренный";
-                }
-                else
-                {
-                    return "разносторонний";
-                }
-            }
-            else
-            {
-                return "не треугольник";
-            }
-        }
+      // Act
+      string triangleType = Program.GetTriangleType(a,b , c);
 
+      // Assert
+      Assert.AreEqual("разносторонний", triangleType);
+  }
 
-          
+  [TestCase(1, 2, 3)]
+  [TestCase(2, 1, 3)]
+  [TestCase(1, 3, 2)]
+  [TestCase(3, 2, 1)]
 
-        private List<Tuple<int, int>> GetVertexCoordinates(float sideA, float sideB, float sideC)
-        {
-  
-            const int fieldSize = 100;
-            const int scalingFactor = fieldSize / 10;
+  public void GetTriangleType_NotATriangle_ReturnsNotTriangle(float a, float b, float c)
+  {
+      // Arrange
+   
 
-            if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA)
-            {
-    
-                int xA = 0;
-                int yA = 0;
-                int xB = (int)(sideC * scalingFactor);
-                int yB = 0;
-                int xC = (int)(sideB * scalingFactor * Math.Cos(Math.Acos((sideB * sideB + sideC * sideC - sideA * sideA) / (2 * sideB * sideC))));
+      // Act
+      string triangleType = Program.GetTriangleType(a, b, c);
 
-                int yC = (int)(sideB * scalingFactor * Math.Sin(Math.Asin(sideB * Math.Sin(Math.Acos((sideB * sideB + sideC * sideC - sideA * sideA) / (2 * sideB * sideC))))));
+      // Assert
+      Assert.AreEqual("не треугольник", triangleType);
+  }
 
-                return new List<Tuple<int, int>>()
-            {
-                new Tuple<int, int>(xA, yA),
-                new Tuple<int, int>(xB, yB),
-                new Tuple<int, int>(xC, yC)
-            };
-            }
-            else
-            {
-              
-                return new List<Tuple<int, int>>()
-            {
-                new Tuple<int, int>(-1, -1),
-                new Tuple<int, int>(-1, -1),
-                new Tuple<int, int>(-1, -1)
-            };
-            }
-        }
+  [Test]
+  public void GetVertexCoordinates_ValidSides_ReturnsCoordinates()
+  {
+      // Arrange
+      float sideA = 3;
+      float sideB = 4;
+      float sideC = 5;
 
-        private string GetVertexCoordinatesString(List<Tuple<int, int>> vertexCoordinates)
-        {
+      // Act
+      List<Tuple<int, int>> vertexCoordinates = Program.GetVertexCoordinates(sideA, sideB, sideC);
 
-            string coordinatesString = "";
-            foreach (var vertex in vertexCoordinates)
-            {
-                coordinatesString += "(" + vertex.Item1 + ", " + vertex.Item2 + "), ";
-            }
-            return coordinatesString.TrimEnd(',', ' ');
-        }
+      // Assert
+      Assert.AreEqual(3, vertexCoordinates.Count);
+      Assert.AreEqual(new Tuple<int, int>(0, 0), vertexCoordinates[0]);
+      Assert.AreEqual(new Tuple<int, int>(50, 0), vertexCoordinates[1]);
+      Assert.AreEqual(new Tuple<int, int>(32, -2147483648), vertexCoordinates[2]);
+  }
+
+  [TestCase(1, 2, 3)]
+  [TestCase(2, 1, 3)]
+  [TestCase(1, 3, 2)]
+  [TestCase(3, 2, 1)]
+  public void GetVertexCoordinates_NotATriangle_ReturnsInvalidCoordinates(float a,float b,float c)
+  {
+      // Arrange
+   
+
+      // Act
+      List<Tuple<int, int>> vertexCoordinates = Program.GetVertexCoordinates(a, b, c);
+
+      // Assert
+      Assert.AreEqual(3, vertexCoordinates.Count);
+      Assert.AreEqual(new Tuple<int, int>(-1, -1), vertexCoordinates[0]);
+      Assert.AreEqual(new Tuple<int, int>(-1, -1), vertexCoordinates[1]);
+      Assert.AreEqual(new Tuple<int, int>(-1, -1), vertexCoordinates[2]);
+  }
+
+  [Test]
+  public void GetVertexCoordinatesString_ValidCoordinates_ReturnsFormattedString()
+  {
+      // Arrange
+      List<Tuple<int, int>> vertexCoordinates = new List<Tuple<int, int>>()
+  {
+      new Tuple<int, int>(0, 0),
+      new Tuple<int, int>(60, 0),
+      new Tuple<int, int>(36, 48)
+  };
+
+      // Act
+      string coordinatesString = Program.GetVertexCoordinatesString(vertexCoordinates);
+
+      // Assert
+      Assert.AreEqual("(0, 0), (60, 0), (36, 48)", coordinatesString);
+  }
+
+  [Test]
+  public void GetVertexCoordinatesString_EmptyCoordinates_ReturnsEmptyString()
+  {
+      // Arrange
+      List<Tuple<int, int>> vertexCoordinates = new List<Tuple<int, int>>();
+
+      // Act
+      string coordinatesString = Program.GetVertexCoordinatesString(vertexCoordinates);
+
+      // Assert
+      Assert.AreEqual("", coordinatesString);
+  }
+
 
 
        
